@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Blog Lists</h3>
+    {% for blog in Q %}
+        <p>{{ blog.title }}</p>
+    {% endfor %}
+
+    <h3>Blog Filters By Tags</h3>
+    <h4 style="font-weight: bold;">When you click the tag below: All Posts that have that tag will be shown.</h4> <br>
+    {% for blog in Q %}
+        {% for tag in blog.tags.all %}
+            <a href="{% url 'tagged' tag.slug %}"><span data-value="js" class="tag materialButton primary elevated">{{ tag }}</span></a>
+        {% empty %}
+            <span data-value="js" class="tag materialButton primary elevated">No tag</span>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>
